@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cardColor">#EEE</color>
+    <color name="textColor">#333</color>
+    <color name="primary">#1976D2</color>
+    <color name="secondary">#F57C00</color>
+    <color name="error">#E53935</color>
+
+</resources>
