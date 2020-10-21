@@ -3,6 +3,6 @@
     <color name="cardColor">#333</color>
     <color name="textColor">#40C4FF</color>
     <color name="primary">#42A5F5</color>
-    <color name="secondary">#FFCC80</color>
+    <color name="secondary">#9C27B0</color>
     <color name="error">#Ef9A9A</color>
 </resources>

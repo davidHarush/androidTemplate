@@ -7,12 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.david.androidapptemplate.App
 import com.david.androidapptemplate.R
-import com.david.androidapptemplate.model.News.Item as DataItem
 import com.david.androidapptemplate.ui.base.BaseHolder
-import com.david.haru.myextensions.getApp
 import com.david.haru.myextensions.getAppContext
 import kotlinx.android.synthetic.main.news_item.*
-import java.util.*
+import com.david.androidapptemplate.model.News.Item as DataItem
 
 
 class MainAdapter(
