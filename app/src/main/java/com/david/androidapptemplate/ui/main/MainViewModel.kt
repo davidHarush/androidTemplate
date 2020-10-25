@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.david.androidapptemplate.model.News
-import com.david.androidapptemplate.model.ResultType
 import com.david.androidapptemplate.repos.NewsRepo
+import com.david.androidapptemplate.repos.ResultType
 import com.david.androidapptemplate.runCoroutine
 
 class MainViewModel @ViewModelInject constructor(
@@ -15,6 +15,8 @@ class MainViewModel @ViewModelInject constructor(
 
     private var newsFlash: MutableLiveData<News.NewsFlash> = MutableLiveData()
     private var onErr: MutableLiveData<String> = MutableLiveData()
+    private var selectedItem :  News.Item? = null
+
 
     // onErr
     fun getOnErr(): LiveData<String> {
@@ -40,5 +42,11 @@ class MainViewModel @ViewModelInject constructor(
             }
         }
     }
+
+    fun setSelectedItem(data: News.Item) {
+        selectedItem = data
+    }
+    fun getSelectedItem() =  selectedItem
+
 
 }

@@ -7,9 +7,16 @@
 
     <fragment
         android:id="@+id/HomeFragment"
-        android:name="com.david.androidapptemplate.ui.main.MainFragment"
+        android:name="com.david.androidapptemplate.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/main_fragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/DetailsFragment"
+        android:name="com.david.androidapptemplate.ui.details.DetailsFragment"
+        android:label="DetailsFragment"
+        tools:layout="@layout/details_fragment">
     </fragment>
 
 

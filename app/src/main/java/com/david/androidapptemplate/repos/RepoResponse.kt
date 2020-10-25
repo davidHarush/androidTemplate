@@ -1,6 +1,6 @@
-package com.david.androidapptemplate.model
+package com.david.androidapptemplate.repos
 
-data class Response<D>(
+data class RepoResponse<D>(
     val data: D?,
     val status: ResultType = ResultType.SUCCESS,
     val err: Exception = NullPointerException()
