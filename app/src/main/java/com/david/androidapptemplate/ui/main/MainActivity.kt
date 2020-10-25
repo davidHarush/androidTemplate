@@ -1,14 +1,12 @@
 package com.david.androidapptemplate.ui.main
 
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.david.androidapptemplate.R
-import com.david.androidapptemplate.transparentStatusAndNavigation
 import com.david.androidapptemplate.ui.base.BaseActivity
 import com.david.haru.myextensions.gone
 import com.david.haru.myextensions.pxToDp
