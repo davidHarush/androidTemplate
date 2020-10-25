@@ -1,12 +1,14 @@
 package com.david.androidapptemplate.ui.main
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.david.androidapptemplate.R
+import com.david.androidapptemplate.transparentStatusAndNavigation
 import com.david.androidapptemplate.ui.base.BaseActivity
 import com.david.haru.myextensions.gone
 import com.david.haru.myextensions.pxToDp
@@ -29,10 +31,17 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener(this)
+
         progressBar.visible()
         err.gone()
+        setObserves()
+        setListeners()
 
+
+    }
+
+    private fun setObserves() {
         viewModel.getNewsFlash().observe(this, Observer {
             if (it.item.isNotEmpty()) {
                 progressBar.gone()
@@ -46,9 +55,6 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
             progressBar.gone()
         })
 
-        setListeners()
-
-        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener(this)
 
     }
 
