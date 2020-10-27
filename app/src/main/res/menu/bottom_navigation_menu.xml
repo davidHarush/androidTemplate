@@ -5,17 +5,17 @@
         android:id="@+id/HomeFragment"
         android:checked="true"
         android:icon="@drawable/ic_home"
-        android:title="CCC" />
+        android:title="Home" />
 
     <item
         android:id="@+id/EmptyFragment"
         android:icon="@drawable/ic_settings"
-        android:title="BBB" />
+        android:title="Setting" />
 
     <item
         android:id="@+id/SecondsEmptyFragment"
         android:icon="@drawable/ic_person"
-        android:title="AAA" />
+        android:title="Profile" />
 
 
 

@@ -33,10 +33,10 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val navController = findNavController(R.id.nav_host_fragment)
 
 
-
-        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener(this)
+        navController.addOnDestinationChangedListener(this)
         progressBar.visible()
         err.gone()
         setObserves()
@@ -129,6 +129,10 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
 //        setupActionBarWithNavController(navController, appBarConfiguration) // no ActionBar !!!
         navView.setupWithNavController(navController)
         //   supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        if(navController.currentDestination?.id ==  R.id.DetailsFragment){
+            bottom_navigation.hide()
+        }
 
     }
 

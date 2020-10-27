@@ -7,4 +7,6 @@
     <color name="error">#E53935</color>
     <color name="bottomNavigationBackground">#F5F5FF</color>
     <color name="unSelectedBottomNavigation">#C1D4FD</color>
+    <color name="fabColor">#F57C00</color>
+
 </resources>
