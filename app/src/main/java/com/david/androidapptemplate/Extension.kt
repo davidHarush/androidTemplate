@@ -5,6 +5,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.annotation.IdRes
 import androidx.core.animation.doOnEnd
 import androidx.core.view.drawToBitmap
 import androidx.lifecycle.ViewModel
@@ -113,5 +114,31 @@ fun BottomNavigationView.hide() {
     } catch (e: Exception) {
 
     }
+}
+
+
+/**
+ * if amount set the  Badge will only be a dote else be a number
+ */
+fun BottomNavigationView.showBadge(@IdRes menuItemId: Int = 0, amount: Int = -1) {
+    if (menuItemId == 0) {
+        return
+    }
+    val badge = getOrCreateBadge(menuItemId)
+    badge.isVisible = true
+    if (amount != -1) {
+        badge.number = amount
+    }
+}
+
+
+/**
+ * hide Badge
+ */
+fun BottomNavigationView.hideBadge(@IdRes menuItemId: Int = 0) {
+    if (menuItemId == 0) {
+        return
+    }
+    removeBadge(menuItemId)
 }
 

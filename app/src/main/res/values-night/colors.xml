@@ -5,7 +5,7 @@
     <color name="primary">#42A5F5</color>
     <color name="secondary">#F57C00</color>
     <color name="error">#Ef9A9A</color>
-    <color name="bottomNavigationBackground">#444</color>
+    <color name="bottomNavigationBackground">#E5404045</color>
     <color name="unSelectedBottomNavigation">#C1D4FD</color>
     <color name="fabColor">#9C27B0</color>
 </resources>

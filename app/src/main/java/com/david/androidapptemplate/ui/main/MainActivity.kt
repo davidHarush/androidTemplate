@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.david.androidapptemplate.R
 import com.david.androidapptemplate.hide
 import com.david.androidapptemplate.show
+import com.david.androidapptemplate.showBadge
 import com.david.androidapptemplate.ui.base.BaseActivity
 import com.david.haru.myextensions.gone
 import com.david.haru.myextensions.pxToDp
@@ -42,6 +43,8 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
         setObserves()
         setListeners()
         setBottomNavigation()
+
+//        bottom_navigation.showBadge(menuItemId = R.id.SecondsEmptyFragment , amount = 5)
 
     }
 
