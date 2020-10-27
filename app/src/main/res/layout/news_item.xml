@@ -34,6 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:maxLines="1"
             android:textColor="@color/textColor"
             app:layout_constraintStart_toEndOf="@+id/index"
             app:layout_constraintTop_toTopOf="@+id/index"

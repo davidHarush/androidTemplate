@@ -46,13 +46,12 @@ class HomeAdapter(
 
         override fun onBind(dataItem: DataItem) {
             itemView.tag = dataItem
-            title.text = dataItem.title
+            title.text = dataItem.title.trim()
             index.text = "${adapterPosition + 1}. "
         }
 
         override fun onClick(v: View?) {
 //            callBack.onItemClick(itemView.tag as DataItem)
-
 
             val data = itemView.tag as DataItem
             mainViewModel.setSelectedItem(data)
@@ -66,8 +65,6 @@ class HomeAdapter(
                 null, // Bundle of args
                 null, // NavOptions
                 extras)
-
-
 
         }
 

@@ -29,6 +29,7 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(toolbar)
         findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener(this)
 
         progressBar.visible()
