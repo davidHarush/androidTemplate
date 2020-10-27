@@ -12,21 +12,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:gravity="start"
+        tools:text="hrskuewt kjuew4tk opkewtkj upewt"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/subTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
         android:layout_marginTop="30dp"
+        android:textSize="24sp"
         android:visibility="gone"
+        tools:visibility="visible"
+        tools:text="lkdrs drsut,m erg toiewtl jhrskuewt kjuew4tk opkewtkj upewt ;lkiu tr 0o8it4 84w tp oiu"
+        android:gravity="start"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-      />
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
