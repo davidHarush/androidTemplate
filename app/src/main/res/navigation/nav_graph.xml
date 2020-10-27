@@ -19,5 +19,18 @@
         tools:layout="@layout/details_fragment">
     </fragment>
 
+    <fragment
+        android:id="@+id/EmptyFragment"
+        android:name="com.david.androidapptemplate.ui.empty.EmptyFragment"
+        android:label="DetailsFragment"
+        tools:layout="@layout/empty_fragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/SecondsEmptyFragment"
+        android:name="com.david.androidapptemplate.ui.empty.SecondsEmptyFragment"
+        android:label="DetailsFragment"
+        tools:layout="@layout/empty_fragment">
+    </fragment>
 
 </navigation>

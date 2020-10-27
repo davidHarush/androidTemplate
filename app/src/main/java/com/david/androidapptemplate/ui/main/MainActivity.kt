@@ -6,12 +6,16 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.david.androidapptemplate.R
+import com.david.androidapptemplate.hide
+import com.david.androidapptemplate.show
 import com.david.androidapptemplate.ui.base.BaseActivity
 import com.david.haru.myextensions.gone
 import com.david.haru.myextensions.pxToDp
 import com.david.haru.myextensions.showToast
 import com.david.haru.myextensions.visible
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -29,16 +33,19 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
-        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener(this)
 
+
+
+        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener(this)
         progressBar.visible()
         err.gone()
         setObserves()
         setListeners()
-
+        setBottomNavigation()
 
     }
+
+
 
     private fun setObserves() {
         viewModel.getNewsFlash().observe(this, Observer {
@@ -93,15 +100,39 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
             fab.show()
             fab_up.show()
             fab_down.show()
+            bottom_navigation.hide()
         }
         if (destination.id == R.id.HomeFragment) {
             fab.hide()
             fab_up.hide()
             fab_down.hide()
+            bottom_navigation.show()
         }
 
+    }
+
+
+    private fun setBottomNavigation() {
+
+        val navView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+
+        val navController = findNavController(R.id.nav_host_fragment)
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+//        val appBarConfiguration = AppBarConfiguration(
+//            setOf(
+//                R.id.HomeFragment,
+//                R.id.EmptyFragment,
+//                R.id.SecondsEmptyFragment
+//            )
+//        )
+//        setupActionBarWithNavController(navController, appBarConfiguration) // no ActionBar !!!
+        navView.setupWithNavController(navController)
+        //   supportActionBar?.setDisplayShowTitleEnabled(false)
 
     }
+
+
 
 
 }
