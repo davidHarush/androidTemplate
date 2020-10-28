@@ -5,4 +5,8 @@
     <color name="primary">#42A5F5</color>
     <color name="secondary">#9C27B0</color>
     <color name="error">#Ef9A9A</color>
+    <color name="title">#000</color>
+    <color name="titleEndAnim">#fff</color>
+
+
 </resources>

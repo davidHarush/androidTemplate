@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint android:id="@+id/guideline_start" />
+        <Constraint android:id="@+id/guideline_start" />
+        <Constraint android:id="@+id/guideline_top" />
+
+        <Constraint
+            android:id="@+id/main_title"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                motion:attributeName="textSize"
+                motion:customDimension="10sp" />
+            <CustomAttribute
+                motion:attributeName="alpha"
+                motion:customFloatValue="1" />
+            <CustomAttribute
+                motion:attributeName="background"
+                motion:customColorDrawableValue="@color/primary" />
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@color/title" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/recyclerView"
+            android:layout_margin="3dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/main_title" />
+
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint android:id="@+id/guideline_start" />
+        <Constraint android:id="@+id/guideline_start" />
+        <Constraint android:id="@+id/guideline_top" />
+        <Constraint
+            android:id="@id/main_title"
+            android:layout_height="50dp"
+            motion:layout_constraintEnd_toEndOf="@id/guideline_end"
+            motion:layout_constraintStart_toStartOf="@id/guideline_start"
+            motion:layout_constraintTop_toTopOf="@+id/guideline_top">
+            <CustomAttribute
+                motion:attributeName="textSize"
+                motion:customDimension="8sp" />
+            <CustomAttribute
+                motion:attributeName="alpha"
+                motion:customFloatValue="0.7" />
+            <CustomAttribute
+                motion:attributeName="background"
+                motion:customColorDrawableValue="@color/title" />
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@color/titleEndAnim" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/recyclerView"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <Transition
+        motion:constraintSetEnd="@id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="1000">
+        <OnSwipe
+            motion:dragDirection="dragUp"
+            motion:dragScale="0.5"
+            motion:moveWhenScrollAtTop="true"
+            motion:onTouchUp="stop"
+            motion:touchAnchorId="@id/recyclerView"
+            motion:touchAnchorSide="top" />
+    </Transition>
+</MotionScene>

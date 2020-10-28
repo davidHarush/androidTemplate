@@ -10,7 +10,6 @@ import com.david.androidapptemplate.ui.main.MainViewModel
 import com.david.haru.myextensions.fadeInAnimate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.details_fragment.*
-import kotlinx.android.synthetic.main.news_item.title
 
 @AndroidEntryPoint
 class DetailsFragment : BaseFragment(R.layout.details_fragment) {
@@ -38,10 +37,10 @@ class DetailsFragment : BaseFragment(R.layout.details_fragment) {
         super.onViewCreated(view, savedInstanceState)
         val data = mainViewModel.getSelectedItem()!!
 
-        title.transitionName = "transitionName${data}"
-        title.text = data.title
-        subTitle.text = data.subTitle
-        subTitle.fadeInAnimate()
+        detailsTitle.transitionName = "transitionName${data}"
+        detailsTitle.text = data.title
+        detailsSubTitle.text = data.subTitle
+        detailsSubTitle.fadeInAnimate()
 
     }
 

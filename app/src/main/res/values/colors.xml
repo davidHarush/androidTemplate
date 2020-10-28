@@ -5,5 +5,7 @@
     <color name="primary">#1976D2</color>
     <color name="secondary">#F57C00</color>
     <color name="error">#E53935</color>
+    <color name="title">#fff</color>
+    <color name="titleEndAnim">#000</color>
 
 </resources>
