@@ -12,10 +12,6 @@ import androidx.paging.cachedIn
 import com.david.androidapptemplate.model.Movie
 import com.david.androidapptemplate.network.IMoviesApiService
 import com.david.androidapptemplate.repos.MoviePagingSource
-import com.david.androidapptemplate.repos.MoviesRepo
-import com.david.androidapptemplate.repos.ResultType
-import com.david.androidapptemplate.runCoroutine
-import com.david.haru.myextensions.showToast
 import kotlinx.coroutines.flow.Flow
 
 class MainViewModel @ViewModelInject constructor(

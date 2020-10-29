@@ -7,10 +7,8 @@ import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import com.david.androidapptemplate.R
-import com.david.androidapptemplate.model.Movie
 import com.david.androidapptemplate.ui.base.BaseHolder
 import kotlinx.android.synthetic.main.load_state_view.*
-import kotlinx.android.synthetic.main.load_state_view.view.*
 
 /**
  * Created by David Harush

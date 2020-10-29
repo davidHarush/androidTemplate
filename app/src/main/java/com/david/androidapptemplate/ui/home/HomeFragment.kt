@@ -19,7 +19,6 @@ import com.david.androidapptemplate.ui.main.MainViewModel
 import com.david.haru.myextensions.gone
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.main_fragment.*
-import kotlinx.android.synthetic.main.main_fragment.view.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

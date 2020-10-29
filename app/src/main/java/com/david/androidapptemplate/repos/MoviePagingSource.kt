@@ -3,8 +3,6 @@ package com.david.androidapptemplate.repos
 import androidx.paging.PagingSource
 import com.david.androidapptemplate.model.Movie
 import com.david.androidapptemplate.network.IMoviesApiService
-import com.david.haru.myextensions.showToast
-import kotlinx.coroutines.delay
 
 /**
  * Created by David Harush
