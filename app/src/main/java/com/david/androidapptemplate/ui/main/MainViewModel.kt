@@ -4,18 +4,18 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.david.androidapptemplate.model.News
-import com.david.androidapptemplate.repos.NewsRepo
+import com.david.androidapptemplate.model.Movie
+import com.david.androidapptemplate.repos.MoviesRepo
 import com.david.androidapptemplate.repos.ResultType
 import com.david.androidapptemplate.runCoroutine
 
 class MainViewModel @ViewModelInject constructor(
-    private val newsRepo: NewsRepo
+    private val newsRepo: MoviesRepo
 ) : ViewModel() {
 
-    private var newsFlash: MutableLiveData<News.NewsFlash> = MutableLiveData()
+    private var newsFlash: MutableLiveData<Movie.ApiResult> = MutableLiveData()
     private var onErr: MutableLiveData<String> = MutableLiveData()
-    private var selectedItem :  News.Item? = null
+    private var selectedItem :  Movie.Item? = null
 
 
     // onErr
@@ -23,27 +23,27 @@ class MainViewModel @ViewModelInject constructor(
         return onErr
     }
 
-    // Get Data - News Flash
-    fun getNewsFlash(): LiveData<News.NewsFlash> {
+    // Get Data
+    fun getData(): LiveData<Movie.ApiResult> {
         if (newsFlash.value == null) {
-            fetchNewsFlash()
+            fetchData()
         }
         return newsFlash
     }
 
-    private fun fetchNewsFlash() {
+    private fun fetchData() {
         runCoroutine {
-            newsRepo.getNewsFlash().let {
+            newsRepo.getMovies().let {
                 if (it.status == ResultType.SUCCESS) {
                     newsFlash.postValue(it.data)
                 } else {
-                    onErr.postValue(it.err.message)
+                    onErr.postValue(it.throwable.message)
                 }
             }
         }
     }
 
-    fun setSelectedItem(data: News.Item) {
+    fun setSelectedItem(data: Movie.Item) {
         selectedItem = data
     }
     fun getSelectedItem() =  selectedItem

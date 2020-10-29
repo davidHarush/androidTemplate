@@ -5,6 +5,9 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.transition.TransitionInflater
 import com.david.androidapptemplate.R
+import com.david.androidapptemplate.loadImage
+import com.david.androidapptemplate.model.getImageUrl
+import com.david.androidapptemplate.model.getTransitionName
 import com.david.androidapptemplate.ui.base.BaseFragment
 import com.david.androidapptemplate.ui.main.MainViewModel
 import com.david.haru.myextensions.fadeInAnimate
@@ -37,10 +40,13 @@ class DetailsFragment : BaseFragment(R.layout.details_fragment) {
         super.onViewCreated(view, savedInstanceState)
         val data = mainViewModel.getSelectedItem()!!
 
-        detailsTitle.transitionName = "transitionName${data}"
-        detailsTitle.text = data.title
-        detailsSubTitle.text = data.subTitle
-        detailsSubTitle.fadeInAnimate()
+        image.transitionName = data.getTransitionName()+"image"
+        title.transitionName = data.getTransitionName()+"title"
+
+        image.loadImage(data.getImageUrl().toString())
+        title.text = data.title
+        subTitle.text = data.overview
+        subTitle.fadeInAnimate()
 
     }
 

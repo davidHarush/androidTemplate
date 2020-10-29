@@ -1,7 +1,6 @@
 package com.david.androidapptemplate.di
 
-import com.david.androidapptemplate.BASE_URL_NEWSFLASH
-import com.david.androidapptemplate.network.ApiService
+import com.david.androidapptemplate.network.IMoviesApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,8 +40,8 @@ class AppModule {
     @Singleton
     fun provideWebService(
        okHttpClient: OkHttpClient
-    ): ApiService = createWebService(okHttpClient,
-        BASE_URL_NEWSFLASH
+    ): IMoviesApiService = createWebService(okHttpClient,
+        IMoviesApiService.BASE_URL
     )
 
 
