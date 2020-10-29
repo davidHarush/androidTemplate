@@ -10,27 +10,30 @@ import androidx.recyclerview.widget.ListAdapter
 import com.david.androidapptemplate.App
 import com.david.androidapptemplate.R
 import com.david.androidapptemplate.getApp
+import com.david.androidapptemplate.loadImage
+import com.david.androidapptemplate.model.Movie
+import com.david.androidapptemplate.model.getImageUrl
+import com.david.androidapptemplate.model.getTransitionName
 import com.david.androidapptemplate.ui.base.BaseHolder
 import com.david.androidapptemplate.ui.main.MainViewModel
-import kotlinx.android.synthetic.main.news_item.*
-import com.david.androidapptemplate.model.News.Item as DataItem
+import kotlinx.android.synthetic.main.list_item.*
 
 
 class HomeAdapter(
     private val callBack: CallBack,
     private val mainViewModel: MainViewModel
-) : ListAdapter<DataItem, HomeAdapter.NewsViewHolder>(
+) : ListAdapter<Movie.Item, HomeAdapter.NewsViewHolder>(
     NewsDiffCallback()
 ) {
     private var mInflater: LayoutInflater = LayoutInflater.from(getApp() as App)
 
-    fun setData(data: List<DataItem>): HomeAdapter {
+    fun setData(data:ArrayList<Movie.Item>): HomeAdapter {
         submitList(data)
         return this
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
-        return NewsViewHolder(mInflater.inflate(R.layout.news_item, parent, false))
+        return NewsViewHolder(mInflater.inflate(R.layout.list_item, parent, false))
     }
 
     override fun getItemCount(): Int = currentList.size
@@ -39,26 +42,27 @@ class HomeAdapter(
         holder.onBind(currentList[position])
     }
 
-    inner class NewsViewHolder(itemView: View) : BaseHolder<DataItem>(itemView) {
+    inner class NewsViewHolder(itemView: View) : BaseHolder<Movie.Item>(itemView) {
         init {
             itemView.setOnClickListener(this)
         }
 
-        override fun onBind(dataItem: DataItem) {
+        override fun onBind(dataItem: Movie.Item) {
             itemView.tag = dataItem
             title.text = dataItem.title.trim()
-            index.text = "${adapterPosition + 1}. "
+            image.loadImage(url = dataItem.getImageUrl().toString())
         }
 
         override fun onClick(v: View?) {
 //            callBack.onItemClick(itemView.tag as DataItem)
 
-            val data = itemView.tag as DataItem
+            val data = itemView.tag as Movie.Item
             mainViewModel.setSelectedItem(data)
 
-            val transitionName = "transitionName${data}"
-            title.transitionName = transitionName
-            val extras = FragmentNavigatorExtras(title to transitionName)
+            val transitionName = data.getTransitionName()
+            image.transitionName = transitionName+"image"
+            title.transitionName = transitionName+"title"
+            val extras = FragmentNavigatorExtras(image to image.transitionName, title to title.transitionName)
 
             callBack.getNavController().navigate(
                 R.id.DetailsFragment,
@@ -70,20 +74,20 @@ class HomeAdapter(
 
     }
 
-    class NewsDiffCallback : DiffUtil.ItemCallback<DataItem>() {
+    class NewsDiffCallback : DiffUtil.ItemCallback<Movie.Item>() {
 
-        override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
+        override fun areItemsTheSame(oldItem: Movie.Item, newItem: Movie.Item): Boolean {
             return oldItem.hashCode() == newItem.hashCode()
         }
 
-        override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
+        override fun areContentsTheSame(oldItem: Movie.Item, newItem: Movie.Item): Boolean {
             return oldItem == newItem
         }
 
     }
 
     interface CallBack {
-        fun onItemClick(item: DataItem)
+        fun onItemClick(item: Movie.Item)
         fun getNavController() : NavController
     }
 
