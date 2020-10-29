@@ -1,15 +1,9 @@
 package com.david.androidapptemplate.repos
 
-import com.david.androidapptemplate.di.AppModule
 import com.david.androidapptemplate.model.Movie
 import com.david.androidapptemplate.network.IMoviesApiService
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.HttpException
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -19,6 +13,7 @@ class MoviesRepo @Inject constructor(
 ) {
 
     suspend fun getMovies(): RepoResponse<Movie.ApiResult> {
+
 
         return try {
             val result: Movie.ApiResult =   webService.getPopularMovies()
