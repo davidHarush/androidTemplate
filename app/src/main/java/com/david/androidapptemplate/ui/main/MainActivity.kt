@@ -34,12 +34,14 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val navController = findNavController(R.id.nav_host_fragment)
-
-
-        navController.addOnDestinationChangedListener(this)
         progressBar.visible()
         err.gone()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener(this)
         setObserves()
         setListeners()
         setBottomNavigation()
@@ -48,11 +50,9 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
 
     }
 
-
-
     private fun setObserves() {
-        viewModel.getNewsFlash().observe(this, Observer {
-            if (it.item.isNotEmpty()) {
+        viewModel.getData().observe(this, Observer {
+            if (it.total_results >0) {
                 progressBar.gone()
                 err.gone()
             }
@@ -111,7 +111,6 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
             fab_down.hide()
             bottom_navigation.show()
         }
-
     }
 
 
@@ -138,8 +137,6 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
         }
 
     }
-
-
 
 
 }

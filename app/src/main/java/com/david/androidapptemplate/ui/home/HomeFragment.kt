@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.transition.TransitionInflater
 import com.david.androidapptemplate.R
-import com.david.androidapptemplate.model.News
+import com.david.androidapptemplate.model.Movie
 import com.david.androidapptemplate.ui.base.BaseFragment
 import com.david.androidapptemplate.ui.main.MainViewModel
 import com.david.haru.myextensions.gone
@@ -66,15 +66,15 @@ class HomeFragment : BaseFragment(), HomeAdapter.CallBack {
 
 
     private fun setObserves(v: View) {
-        mainViewModel.getNewsFlash()
+        mainViewModel.getData()
             .observe(requireActivity(),
-                Observer { result ->
+                Observer {movies ->
                     v.recyclerView.apply {
                         adapter = HomeAdapter(
                             callBack = this@HomeFragment,
                             mainViewModel = mainViewModel
-                        ).setData(result.item)
-                        layoutManager = LinearLayoutManager(context)
+                        ).setData(movies.results as ArrayList<Movie.Item>)
+                        layoutManager = GridLayoutManager(context,  ScreenSizeUtil.getNumberOfColumnsByScreenSize())
                         visible()
                     }
 
@@ -87,7 +87,7 @@ class HomeFragment : BaseFragment(), HomeAdapter.CallBack {
                 })
     }
 
-    override fun onItemClick(item: News.Item) {
+    override fun onItemClick(item: Movie.Item) {
 
     }
 

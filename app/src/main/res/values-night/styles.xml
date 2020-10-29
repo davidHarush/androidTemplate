@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="@style/Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
@@ -6,7 +6,12 @@
         <item name="colorSecondary">@color/secondary</item>
         <item name="colorError">@color/error</item>
         <item name="android:textColor">?attr/colorOnBackground</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
+
+        <item name="android:navigationBarColor">#000</item>
+        <item name="android:statusBarColor">#000</item>
+
     </style>
 
 </resources>

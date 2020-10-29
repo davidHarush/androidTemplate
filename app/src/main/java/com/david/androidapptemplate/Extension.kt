@@ -8,8 +8,12 @@ import android.view.animation.AnimationUtils
 import androidx.annotation.IdRes
 import androidx.core.animation.doOnEnd
 import androidx.core.view.drawToBitmap
+import android.widget.ImageView
+import androidx.annotation.DrawableRes
+import androidx.annotation.NonNull
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.Glide
 import com.david.haru.myextensions.getBaseApp
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.CoroutineScope
@@ -28,6 +32,19 @@ fun ViewModel.runCoroutine(  block: suspend CoroutineScope.() -> Unit){
 
 fun getApp() = getBaseApp() as App
 
+
+fun ImageView.loadImage(
+    @NonNull url: String,
+    @DrawableRes error: Int = 0,
+    @DrawableRes holder: Int = 0
+) {
+    Glide
+        .with(getApp())
+        .load(url)
+        .error(error)
+        .placeholder(holder)
+        .into(this)
+}
 /**
  * Potentially animate showing a [BottomNavigationView].
  *
