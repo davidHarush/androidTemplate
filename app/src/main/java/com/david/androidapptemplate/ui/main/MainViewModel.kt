@@ -4,16 +4,24 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.david.androidapptemplate.model.Movie
+import com.david.androidapptemplate.network.IMoviesApiService
+import com.david.androidapptemplate.repos.MoviePagingSource
 import com.david.androidapptemplate.repos.MoviesRepo
 import com.david.androidapptemplate.repos.ResultType
 import com.david.androidapptemplate.runCoroutine
+import com.david.haru.myextensions.showToast
+import kotlinx.coroutines.flow.Flow
 
 class MainViewModel @ViewModelInject constructor(
-    private val newsRepo: MoviesRepo
+    private val webService: IMoviesApiService
 ) : ViewModel() {
-
-    private var newsFlash: MutableLiveData<Movie.ApiResult> = MutableLiveData()
+    private var movies: Flow<PagingData<Movie.Item>>? =  null
     private var onErr: MutableLiveData<String> = MutableLiveData()
     private var selectedItem :  Movie.Item? = null
 
@@ -22,25 +30,23 @@ class MainViewModel @ViewModelInject constructor(
     fun getOnErr(): LiveData<String> {
         return onErr
     }
+    fun setErr(err : String) {
+        onErr.postValue(err)
+    }
 
     // Get Data
-    fun getData(): LiveData<Movie.ApiResult> {
-        if (newsFlash.value == null) {
+    fun getData():  Flow<PagingData<Movie.Item>>? {
+        if (movies == null) {
             fetchData()
         }
-        return newsFlash
+        return movies
     }
 
     private fun fetchData() {
-        runCoroutine {
-            newsRepo.getMovies().let {
-                if (it.status == ResultType.SUCCESS) {
-                    newsFlash.postValue(it.data)
-                } else {
-                    onErr.postValue(it.throwable.message)
-                }
-            }
-        }
+            movies = Pager(PagingConfig(pageSize = 20)) {
+                MoviePagingSource(webService)
+            }.flow
+                .cachedIn(viewModelScope)
     }
 
     fun setSelectedItem(data: Movie.Item) {

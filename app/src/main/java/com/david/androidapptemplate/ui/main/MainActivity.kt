@@ -30,33 +30,12 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        progressBar.visible()
-        err.gone()
-
     }
 
     override fun onStart() {
         super.onStart()
         findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener(this)
-        setObserves()
         setListeners()
-    }
-
-    private fun setObserves() {
-        viewModel.getData().observe(this, Observer {
-            if (it.total_results >0) {
-                progressBar.gone()
-                err.gone()
-            }
-        })
-
-        viewModel.getOnErr().observe(this, Observer {
-            err.visible()
-            err.text = it
-            progressBar.gone()
-        })
-
-
     }
 
     private fun setListeners() {

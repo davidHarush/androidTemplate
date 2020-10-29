@@ -30,6 +30,7 @@
         app:navGraph="@navigation/nav_graph" />
 
     <ProgressBar
+        android:visibility="gone"
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,6 +40,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/err"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
