@@ -1,7 +1,6 @@
 package com.david.androidapptemplate.ui.main
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
