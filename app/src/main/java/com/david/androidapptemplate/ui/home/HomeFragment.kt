@@ -127,7 +127,7 @@ class HomeFragment : BaseFragment(), HomeAdapter.CallBack {
 
         }
 
-        mainViewModel.getOnErr()
+        mainViewModel.onErr
             .observe(requireActivity(),
                 Observer {
                     recyclerView.gone()

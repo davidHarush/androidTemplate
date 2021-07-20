@@ -18,17 +18,13 @@ class MainViewModel @ViewModelInject constructor(
     private val webService: IMoviesApiService
 ) : ViewModel() {
     private var movies: Flow<PagingData<Movie.Item>>? =  null
-    private var onErr: MutableLiveData<String> = MutableLiveData()
+
+    private var _onErr: MutableLiveData<String> = MutableLiveData()
+    var onErr: MutableLiveData<String> = _onErr
+
     private var selectedItem :  Movie.Item? = null
 
 
-    // onErr
-    fun getOnErr(): LiveData<String> {
-        return onErr
-    }
-    fun setErr(err : String) {
-        onErr.postValue(err)
-    }
 
     // Get Data
     fun getData():  Flow<PagingData<Movie.Item>>? {
