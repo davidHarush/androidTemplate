@@ -17,21 +17,11 @@ import kotlinx.coroutines.flow.Flow
 class MainViewModel @ViewModelInject constructor(
     private val webService: IMoviesApiService
 ) : ViewModel() {
-    private var movies: Flow<PagingData<Movie.Item>>? =  null
-    private var onErr: MutableLiveData<String> = MutableLiveData()
-    private var selectedItem :  Movie.Item? = null
-
-
-    // onErr
-    fun getOnErr(): LiveData<String> {
-        return onErr
-    }
-    fun setErr(err : String) {
-        onErr.postValue(err)
-    }
+    private var movies: Flow<PagingData<Movie.Item>>? = null
+    private var selectedItem: Movie.Item? = null
 
     // Get Data
-    fun getData():  Flow<PagingData<Movie.Item>>? {
+    fun getData(): Flow<PagingData<Movie.Item>>? {
         if (movies == null) {
             fetchData()
         }
@@ -39,16 +29,16 @@ class MainViewModel @ViewModelInject constructor(
     }
 
     private fun fetchData() {
-            movies = Pager(PagingConfig(pageSize = 20)) {
-                MoviePagingSource(webService)
-            }.flow
-                .cachedIn(viewModelScope)
+        movies = Pager(PagingConfig(pageSize = 20)) {
+            MoviePagingSource(webService)
+        }.flow
+            .cachedIn(viewModelScope)
     }
 
     fun setSelectedItem(data: Movie.Item) {
         selectedItem = data
     }
-    fun getSelectedItem() =  selectedItem
 
+    fun getSelectedItem() = selectedItem
 
 }

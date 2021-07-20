@@ -12,6 +12,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.transition.TransitionInflater
 import com.david.androidapptemplate.R
+import com.david.androidapptemplate.classTag
 import com.david.androidapptemplate.model.Movie
 import com.david.androidapptemplate.ui.base.BaseFragment
 import com.david.androidapptemplate.ui.home.HomeAdapter.Companion.MOVIE_VIEW_TYPE
@@ -23,17 +24,13 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment(), HomeAdapter.CallBack {
+class HomeFragment : BaseFragment() {
 
     private val mainViewModel: MainViewModel by activityViewModels<MainViewModel>()
     private var viewHome: View? = null
-    private var adapter : HomeAdapter? = null
+    private var adapter: HomeAdapter? = null
 
-
-    companion object {
-        fun newInstance() =
-            HomeFragment()
-    }
+    override fun getFragmentName() = classTag
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +51,6 @@ class HomeFragment : BaseFragment(), HomeAdapter.CallBack {
             //prevent redraw the fragment
             viewHome = inflater.inflate(R.layout.main_fragment, container, false)
 
-
         }
 
         return viewHome
@@ -65,34 +61,32 @@ class HomeFragment : BaseFragment(), HomeAdapter.CallBack {
         super.onViewCreated(view, savedInstanceState)
         if (adapter == null) {
             adapter = HomeAdapter(
-                callBack = this@HomeFragment,
-                mainViewModel = mainViewModel
+                mainViewModel = mainViewModel,
+                nav = findNavController()
             )
 
-
             recyclerView.apply {
-                this.adapter = (this@HomeFragment.adapter)?.withLoadStateFooter(footer = MovieLoadStateAdapter())
+                this.adapter =
+                    (this@HomeFragment.adapter)?.withLoadStateFooter(footer = MovieLoadStateAdapter())
 
-                val gridLayoutManager = GridLayoutManager(context, ScreenSizeUtil.getNumberOfColumnsByScreenSize())
+                val gridLayoutManager =
+                    GridLayoutManager(context, ScreenSizeUtil.getNumberOfColumnsByScreenSize())
                 gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
                         val viewType = this@HomeFragment.adapter?.getItemViewType(position)
-                        return if(viewType == MOVIE_VIEW_TYPE) 1
+                        return if (viewType == MOVIE_VIEW_TYPE) 1
                         else 2
                     }
                 }
 
                 setHasFixedSize(true)
-                layoutManager =gridLayoutManager
+                layoutManager = gridLayoutManager
 
             }
             setObserves()
         }
 
     }
-
-    override fun getFragmentName(): String = HomeFragment::class.java.simpleName
-
 
     private fun setObserves() {
         lifecycle.coroutineScope.launch {
@@ -110,9 +104,9 @@ class HomeFragment : BaseFragment(), HomeAdapter.CallBack {
             https://proandroiddev.com/how-to-use-the-paging-3-library-in-android-5d128bb5b1d8
             This code is taken from https://medium.com/@yash786agg/jetpack-paging-3-0-android-bae37a56b92d
              **/
-            if (loadState.refresh is LoadState.Loading){
+            if (loadState.refresh is LoadState.Loading) {
                 // Loading
-            }else{
+            } else {
                 // end Loading
 
                 // getting the error
@@ -127,17 +121,7 @@ class HomeFragment : BaseFragment(), HomeAdapter.CallBack {
 
         }
 
-        mainViewModel.getOnErr()
-            .observe(requireActivity(),
-                Observer {
-                    recyclerView.gone()
-                })
     }
 
-    override fun onItemClick(item: Movie.Item) {
-
-    }
-
-    override fun getNavController() = findNavController()
 
 }

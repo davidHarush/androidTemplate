@@ -7,6 +7,10 @@ import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
 
+//************
+// **NOTE
+// not in use in this Branch
+//*************
 @Singleton
 class MoviesRepo @Inject constructor(
     private val webService: IMoviesApiService
@@ -16,7 +20,7 @@ class MoviesRepo @Inject constructor(
 
 
         return try {
-            val result: Movie.ApiResult =   webService.getPopularMovies()
+            val result: Movie.ApiResult = webService.getPopularMovies()
             RepoResponse(
                 data = result,
                 status = ResultType.SUCCESS

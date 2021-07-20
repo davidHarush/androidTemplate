@@ -7,11 +7,6 @@ import retrofit2.http.Query
  * Created by David Harush
  * On 29/10/2020.
  */
-
-
-/**
- * Created by david-h.
- */
 interface IMoviesApiService {
 
     companion object {

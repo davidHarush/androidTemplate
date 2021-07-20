@@ -19,8 +19,6 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
     private var isFABExpened = false
 
 
-    private val viewModel: MainViewModel by viewModels<MainViewModel>()
-
     override fun getActivityName(): String = MainActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
