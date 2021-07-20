@@ -1,9 +1,6 @@
 package com.david.androidapptemplate.ui.home
 
 import android.content.Context
-import android.util.DisplayMetrics
-import android.view.WindowManager
-import com.david.androidapptemplate.getApp
 
 /**
  * Created by David Harush
@@ -12,13 +9,9 @@ import com.david.androidapptemplate.getApp
 
 object ScreenSizeUtil {
 
-    public fun getNumberOfColumnsByScreenSize(): Int {
-        val dm = DisplayMetrics()
-        val wm = getApp().getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        wm.defaultDisplay.getMetrics(dm)
-        val width = dm.widthPixels
-        val height = dm.heightPixels
-
+    public fun getNumberOfColumnsByScreenSize(context: Context): Int {
+        val width = context.resources.configuration.screenWidthDp
+        val height = context.resources.configuration.screenHeightDp
         return if (height > width) { //portrait
             2
         } else { //landscape

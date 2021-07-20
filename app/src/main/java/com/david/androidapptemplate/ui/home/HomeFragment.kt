@@ -70,7 +70,7 @@ class HomeFragment : BaseFragment() {
                     (this@HomeFragment.adapter)?.withLoadStateFooter(footer = MovieLoadStateAdapter())
 
                 val gridLayoutManager =
-                    GridLayoutManager(context, ScreenSizeUtil.getNumberOfColumnsByScreenSize())
+                    GridLayoutManager(context, ScreenSizeUtil.getNumberOfColumnsByScreenSize(requireContext()))
                 gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
                         val viewType = this@HomeFragment.adapter?.getItemViewType(position)
