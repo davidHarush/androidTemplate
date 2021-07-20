@@ -7,6 +7,8 @@ import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import com.david.androidapptemplate.R
+import com.david.androidapptemplate.getApp
+import com.david.androidapptemplate.inflater
 import com.david.androidapptemplate.ui.base.BaseHolder
 import kotlinx.android.synthetic.main.load_state_view.*
 
@@ -20,6 +22,9 @@ import kotlinx.android.synthetic.main.load_state_view.*
 class MovieLoadStateAdapter
  : LoadStateAdapter<MovieLoadStateAdapter.LoadStateViewHolder>() {
 
+    private val mInflater: LayoutInflater by lazy {  getApp().inflater }
+
+
     override fun onBindViewHolder(holder: LoadStateViewHolder, loadState: LoadState) {
         holder.onBind(loadState)
 
@@ -28,7 +33,7 @@ class MovieLoadStateAdapter
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): LoadStateViewHolder {
         return LoadStateViewHolder(
-            LayoutInflater.from(parent.context)
+            mInflater
                 .inflate(R.layout.load_state_view, parent, false)
         )
     }

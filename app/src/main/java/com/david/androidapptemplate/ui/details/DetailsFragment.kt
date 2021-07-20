@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.transition.TransitionInflater
 import com.david.androidapptemplate.R
+import com.david.androidapptemplate.classTag
 import com.david.androidapptemplate.loadImage
 import com.david.androidapptemplate.model.getImageUrl
 import com.david.androidapptemplate.model.getTransitionName
@@ -17,13 +18,8 @@ import kotlinx.android.synthetic.main.details_fragment.*
 @AndroidEntryPoint
 class DetailsFragment : BaseFragment(R.layout.details_fragment) {
 
-    override fun getFragmentName(): String = DetailsFragment::class.java.simpleName
-    private val mainViewModel: MainViewModel by activityViewModels<MainViewModel>()
-
-    companion object {
-        fun newInstance() =
-            DetailsFragment()
-    }
+    override fun getFragmentName() = classTag
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +27,6 @@ class DetailsFragment : BaseFragment(R.layout.details_fragment) {
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
         sharedElementReturnTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
-
-
     }
 
 

@@ -1,8 +1,6 @@
 package com.david.androidapptemplate.ui.main
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -17,17 +15,11 @@ import kotlinx.coroutines.flow.Flow
 class MainViewModel @ViewModelInject constructor(
     private val webService: IMoviesApiService
 ) : ViewModel() {
-    private var movies: Flow<PagingData<Movie.Item>>? =  null
-
-    private var _onErr: MutableLiveData<String> = MutableLiveData()
-    var onErr: MutableLiveData<String> = _onErr
-
-    private var selectedItem :  Movie.Item? = null
-
-
+    private var movies: Flow<PagingData<Movie.Item>>? = null
+    private var selectedItem: Movie.Item? = null
 
     // Get Data
-    fun getData():  Flow<PagingData<Movie.Item>>? {
+    fun getData(): Flow<PagingData<Movie.Item>>? {
         if (movies == null) {
             fetchData()
         }
@@ -35,16 +27,16 @@ class MainViewModel @ViewModelInject constructor(
     }
 
     private fun fetchData() {
-            movies = Pager(PagingConfig(pageSize = 20)) {
-                MoviePagingSource(webService)
-            }.flow
-                .cachedIn(viewModelScope)
+        movies = Pager(PagingConfig(pageSize = 20)) {
+            MoviePagingSource(webService)
+        }.flow
+            .cachedIn(viewModelScope)
     }
 
     fun setSelectedItem(data: Movie.Item) {
         selectedItem = data
     }
-    fun getSelectedItem() =  selectedItem
 
+    fun getSelectedItem() = selectedItem
 
 }

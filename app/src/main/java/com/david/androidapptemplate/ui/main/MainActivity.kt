@@ -1,7 +1,6 @@
 package com.david.androidapptemplate.ui.main
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
@@ -54,8 +53,6 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
 
         fab_up.setOnClickListener { showToast("thumb up") }
         fab_down.setOnClickListener { showToast("thumb down") }
-
-
     }
 
     override fun onDestinationChanged(
@@ -73,9 +70,6 @@ class MainActivity : BaseActivity(), NavController.OnDestinationChangedListener 
             fab_up.hide()
             fab_down.hide()
         }
-
-
     }
-
 
 }
