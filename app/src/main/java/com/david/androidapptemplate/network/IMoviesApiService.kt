@@ -1,5 +1,6 @@
 package com.david.androidapptemplate.network
 import com.david.androidapptemplate.model.Movie
+import retrofit2.Response
 import retrofit2.http.GET
 
 /**
@@ -23,5 +24,5 @@ interface IMoviesApiService {
 
     //    https://api.themoviedb.org/3/movie/popular?api_key=56a778f90174e0061b6e7c69a5e3c9f2&language=en-US
     @GET("/3/movie/popular?api_key=56a778f90174e0061b6e7c69a5e3c9f2")
-    suspend fun getPopularMovies(): Movie.ApiResult
+    suspend fun getPopularMovies(): Response<Movie.ApiResult>
 }

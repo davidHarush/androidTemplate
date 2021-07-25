@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.david.androidapptemplate.model.Movie
 import com.david.androidapptemplate.repos.MoviesRepo
-import com.david.androidapptemplate.repos.ResultType
 import com.david.androidapptemplate.runCoroutine
 
 class MainViewModel @ViewModelInject constructor(
@@ -33,13 +32,13 @@ class MainViewModel @ViewModelInject constructor(
 
     private fun fetchData() {
         runCoroutine {
-            newsRepo.getMovies().let {
-                if (it.status == ResultType.SUCCESS) {
-                    newsFlash.postValue(it.data)
+           val request =  newsRepo.getMovies()
+                if (request.isSuccessful) {
+                    newsFlash.postValue(request.body)
                 } else {
-                    onErr.postValue(it.throwable.message)
+                    onErr.postValue(request.exception?.message)
                 }
-            }
+
         }
     }
 
