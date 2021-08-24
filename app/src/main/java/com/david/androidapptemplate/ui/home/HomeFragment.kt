@@ -12,11 +12,11 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.transition.TransitionInflater
 import com.david.androidapptemplate.R
-import com.david.androidapptemplate.classTag
 import com.david.androidapptemplate.model.Movie
 import com.david.androidapptemplate.ui.base.BaseFragment
 import com.david.androidapptemplate.ui.home.HomeAdapter.Companion.MOVIE_VIEW_TYPE
 import com.david.androidapptemplate.ui.main.MainViewModel
+import com.david.haru.myextensions.classTag
 import com.david.haru.myextensions.gone
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.main_fragment.*

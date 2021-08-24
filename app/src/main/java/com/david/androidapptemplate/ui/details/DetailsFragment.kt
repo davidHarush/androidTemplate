@@ -5,12 +5,12 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.transition.TransitionInflater
 import com.david.androidapptemplate.R
-import com.david.androidapptemplate.classTag
 import com.david.androidapptemplate.loadImage
 import com.david.androidapptemplate.model.getImageUrl
 import com.david.androidapptemplate.model.getTransitionName
 import com.david.androidapptemplate.ui.base.BaseFragment
 import com.david.androidapptemplate.ui.main.MainViewModel
+import com.david.haru.myextensions.classTag
 import com.david.haru.myextensions.fadeInAnimate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.details_fragment.*

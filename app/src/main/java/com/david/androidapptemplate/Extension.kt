@@ -6,16 +6,12 @@ import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.annotation.NonNull
 import com.bumptech.glide.Glide
-import com.david.haru.myextensions.getBaseApp
+import com.david.haru.myextensions.baseContext
 
 /**
  * Created by David Harush
  * On 21/10/2020.
  */
-fun getApp() = getBaseApp() as App
-
-val Any.classTag: String
-    get() = this::class.java.simpleName
 
 fun ImageView.loadImage(
     @NonNull url: String,
@@ -23,7 +19,7 @@ fun ImageView.loadImage(
     @DrawableRes holder: Int = 0
 ) {
     Glide
-        .with(getApp())
+        .with(baseContext)
         .load(url)
         .error(error)
         .placeholder(holder)

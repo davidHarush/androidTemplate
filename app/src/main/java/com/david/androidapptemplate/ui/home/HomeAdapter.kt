@@ -14,6 +14,7 @@ import com.david.androidapptemplate.model.getImageUrl
 import com.david.androidapptemplate.model.getTransitionName
 import com.david.androidapptemplate.ui.base.BaseHolder
 import com.david.androidapptemplate.ui.main.MainViewModel
+import com.david.haru.myextensions.baseContext
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.android.synthetic.main.list_item.*
 
@@ -26,7 +27,7 @@ class HomeAdapter(
 ) : PagingDataAdapter<Movie.Item, HomeAdapter.NewsViewHolder>(
     NewsDiffCallback()
 ) {
-    private val mInflater: LayoutInflater by lazy {  getApp().inflater }
+    private val mInflater: LayoutInflater by lazy { baseContext.inflater }
 
     companion object {
         var FOOTER_VIEW_TYPE: Int = 1
